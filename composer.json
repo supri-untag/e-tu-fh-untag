@@ -5,12 +5,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Supri\\ETuFhUntag\\": "app/"
+            "Supri\\ETU\\UNTAG\\": "app/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Supri\\ETuFhUntag\\": "test/"
+            "Supri\\ETU\\UNTAG\\": "test/"
         }
     },
     "authors": [
@@ -26,6 +26,8 @@
         "ext-gd": "*"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest"
+        ,
         "phpunit/phpunit": "9.5.8"
     }
 }
