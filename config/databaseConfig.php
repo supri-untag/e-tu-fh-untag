@@ -1,27 +1,28 @@
 <?php
+require_once __DIR__.'/../vendor/autoload.php';
 
-function databaseConfig() :array{
-    $env = Dotenv\Dotenv::createImmutable(__DIR__.'/../.env');
+function databaseConfig() :array {
+    $env = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
     $env->load();
     /*
      * database production
      * take from .env
     */
-    $hostProd = getenv('APP_DATABASE_HOST');
-    $portProd = getenv('APP_DATABASE_PORT');
-    $databaseNameProd = getenv('APP_DATABASE_NAME');
-    $databaseUsernameProd = getenv('APP_DATABASE_USERNAME');
-    $databasePasswordProd = getenv('APP_DATABASE_PASSWORD');
+    $hostProd = $_ENV['APP_DATABASE_HOST'];
+    $portProd = $_ENV['APP_DATABASE_PORT'];
+    $databaseNameProd = $_ENV['APP_DATABASE_NAME'];
+    $databaseUsernameProd = $_ENV['APP_DATABASE_USERNAME'];
+    $databasePasswordProd = $_ENV['APP_DATABASE_PASSWORD'];
 
     /*
     * database test
     * take from .env
    */
-    $hostTest= getenv('TEST_DATABASE_HOST');
-    $portTest = getenv('TEST_DATABASE_PORT');
-    $databaseNameTest = getenv('TEST_DATABASE_NAME');
-    $databaseUsernameTest = getenv('TEST_DATABASE_USERNAME');
-    $databasePasswordTest = getenv('TEST_DATABASE_PASSWORD');
+    $hostTest= $_ENV['TEST_DATABASE_HOST'];
+    $portTest = $_ENV['TEST_DATABASE_PORT'];
+    $databaseNameTest = $_ENV['TEST_DATABASE_NAME'];
+    $databaseUsernameTest = $_ENV['TEST_DATABASE_USERNAME'];
+    $databasePasswordTest = $_ENV['TEST_DATABASE_PASSWORD'];
 
     return [
         "database" => [
