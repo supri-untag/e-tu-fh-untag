@@ -1,0 +1,34 @@
+{
+    "name": "supri/e-tu-fh-untag",
+    "description": "Aplikasi TU FH UNTAG semarang Untuk Managemnt barang dan Invetaris",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Supri\\ETU\\UNTAG\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Supri\\ETU\\UNTAG\\": "test/"
+        }
+    },
+    "authors": [
+        {
+            "name": "supriyanto"
+        }
+    ],
+    "require": {
+        "php" : ">=8",
+        "mpdf/mpdf" : "*",
+        "phpoffice/phpspreadsheet" : "*",
+        "ext-gd": "*",
+        "ext-pdo": "*",
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+        ,
+        "phpunit/phpunit": "9.5.8"
+    }
+}
