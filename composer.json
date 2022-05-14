@@ -23,7 +23,8 @@
         "vlucas/phpdotenv" : "5.*",
         "mpdf/mpdf" : "*",
         "phpoffice/phpspreadsheet" : "*",
-        "ext-gd": "*"
+        "ext-gd": "*",
+      "ext-pdo": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"
