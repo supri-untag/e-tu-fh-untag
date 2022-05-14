@@ -21,3 +21,6 @@
 /fuel/app/config/crypt.php
 
 /vendor/
+.env
+.phpunit.result.cache
+

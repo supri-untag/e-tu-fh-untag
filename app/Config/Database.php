@@ -2,6 +2,7 @@
 
 namespace Supri\ETU\UNTAG\Config;
 
+use Exception;
 use PDO;
 
 class Database
@@ -11,18 +12,23 @@ class Database
     public static function getConnection(string $env = "test"): \PDO
     {
         if (self::$PDO == null){
-            require_once __DIR__.'/../../config/databaseConfig.php';
-            $option = [
-                PDO::ATTR_PERSISTENT => true,
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-            ];
-            $config = databaseConfig();
-            self::$PDO = new \PDO(
-                $config['database'][$env]['url'],
-                $config['database'][$env]['username'],
-                $config['database'][$env]['password'],
-                $option
-            );
+            try {
+                require_once __DIR__.'/../../config/databaseConfig.php';
+                $option = [
+                    PDO::ATTR_PERSISTENT => true,
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                ];
+                $config = databaseConfig();
+                self::$PDO = new \PDO(
+                    $config['database'][$env]['url'],
+                    $config['database'][$env]['username'],
+                    $config['database'][$env]['password'],
+                    $option
+                );
+
+            }catch (Exception $exception){
+                echo "Koneksi Gagal";
+            }
         }
         return self::$PDO;
     }
