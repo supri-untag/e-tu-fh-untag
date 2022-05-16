@@ -24,6 +24,12 @@ class UsersController
         ];
         View::render('users/register', $model);
     }
+
+    public function postRegister():void
+    {
+        $this->timeHelper->getDate();
+    }
+
     public function successRegister():void
     {
         $this->timeHelper->setTimeServer();

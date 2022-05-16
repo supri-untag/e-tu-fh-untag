@@ -19,8 +19,25 @@ $('ul.sidebar-menu li a').each(function () {
     }
 });
 
-
 $(document).ready(function(){
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
     $('body').on('keyup','#registers .form-group input', ()=>{
         let empty = false;
         $('#registers .form-group input').each(function() {
@@ -31,6 +48,19 @@ $(document).ready(function(){
         else
             $('button[type=submit]').attr('disabled', false);
     });
+    $('body').on('click', '.__btn-register', (e)=>{
+        e.preventDefault();
+
+        toastr["error"]("My name is Inigo Montoya. You killed my father. Prepare to die!");
+
+        let date = $('[name=date]').val();
+        let name = $('#name').val();
+        let dep = $('#departement').val();
+        let email = $('#email').val();
+        let password = $('#password').val();
+        let passwordConfirm = $('#password2').val();
+
+    });
 
     /*
     * Login section
@@ -38,17 +68,13 @@ $(document).ready(function(){
 
     let time = new Date();
     let CurentHours = time.getHours();
-    console.log(CurentHours);
     let gift;
     if (CurentHours < 11){
         gift = "Morning"
-        console.log('Morning')
     }else  if (CurentHours >=11 && CurentHours <=17) {
         gift = "Afternoon"
-        console.log('Afternoon')
     }else {
         gift = "Night"
-        console.log('Night')
     }
     $('#banner-wecome').html('Good' + gift);
 });

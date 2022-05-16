@@ -11,6 +11,7 @@
                         <div class="card-header"><h4>Pendaftaran</h4></div>
                         <div class="card-body">
                             <form method="POST" id="registers">
+                                <input type="hidden" name="date" value="<?= date('Y-m-d')?>">
                                 <div class="form-group">
                                     <label for="name">Nama lengkap</label>
                                     <input id="name" type="text" class="form-control" name="name" placeholder="Nama...">
@@ -49,7 +50,7 @@
                                     <b>Note!</b> Sandi menggunakan Kominasi angka, huruf dan simbol sebanyak 8 karakter
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block" disabled>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block __btn-register" disabled>
                                         Register
                                     </button>
                                 </div>

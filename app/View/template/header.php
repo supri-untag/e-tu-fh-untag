@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?= $model['url']?>/node_modules/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="<?= $model['url']?>/assets/modules/datatables.min.css">
     <link rel="stylesheet" href="<?= $model['url']?>/node_modules/dropzone/dist/min/dropzone.min.css">
+    <link rel="stylesheet" href="<?= $model['url']?>/node_modules/toastr/build/toastr.min.css">
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?= $model['url']?>/assets/css/style.css">
     <link rel="stylesheet" href="<?= $model['url']?>/assets/css/components.css">

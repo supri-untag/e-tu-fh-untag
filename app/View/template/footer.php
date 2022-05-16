@@ -14,6 +14,7 @@
 <script src="<?= $model['url']?>/node_modules/select2/dist/js/select2.full.min.js"></script>
 <script src="<?= $model['url']?>/assets/modules/datatables.min.js"></script>
 <script src="<?= $model['url']?>/node_modules/dropzone/dist/min/dropzone.min.js"></script>
+<script src="<?= $model['url']?>/node_modules/toastr/build/toastr.min.js"></script>
 
 <!-- JS Module -->
 <script src="<?= $model['url']?>/node_modules/pwstrength/dist/pwstrength-bootstrap.min.js"></script>
