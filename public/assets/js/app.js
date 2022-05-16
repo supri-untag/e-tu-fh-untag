@@ -21,5 +21,34 @@ $('ul.sidebar-menu li a').each(function () {
 
 
 $(document).ready(function(){
+    $('body').on('keyup','#registers .form-group input', ()=>{
+        let empty = false;
+        $('#registers .form-group input').each(function() {
+            empty = $(this).val().length == 0;
+        });
+        if (empty)
+            $('button[type=submit]').attr('disabled', 'disabled');
+        else
+            $('button[type=submit]').attr('disabled', false);
+    });
 
+    /*
+    * Login section
+    * */
+
+    let time = new Date();
+    let CurentHours = time.getHours();
+    console.log(CurentHours);
+    let gift;
+    if (CurentHours < 11){
+        gift = "Morning"
+        console.log('Morning')
+    }else  if (CurentHours >=11 && CurentHours <=17) {
+        gift = "Afternoon"
+        console.log('Afternoon')
+    }else {
+        gift = "Night"
+        console.log('Night')
+    }
+    $('#banner-wecome').html('Good' + gift);
 });

@@ -11,13 +11,12 @@
 <script src="<?= $model['url']?>/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
 <script src="<?= $model['url']?>/node_modules/summernote/dist/summernote-bs4.js"></script>
 <script src="<?= $model['url']?>/node_modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
-<script src="<?= $model['url']?>/node_modules/izitoast/dist/js/iziToast.min.js"></script>
 <script src="<?= $model['url']?>/node_modules/select2/dist/js/select2.full.min.js"></script>
 <script src="<?= $model['url']?>/assets/modules/datatables.min.js"></script>
 <script src="<?= $model['url']?>/node_modules/dropzone/dist/min/dropzone.min.js"></script>
 
 <!-- JS Module -->
-<script src="<?= $model['url']?>/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+<script src="<?= $model['url']?>/node_modules/pwstrength/dist/pwstrength-bootstrap.min.js"></script>
 <script src="<?= $model['url']?>/assets/js/sw2/dist/sweetalert2.all.min.js"></script>
 
 <!-- Template JS File -->

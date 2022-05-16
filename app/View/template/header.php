@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="<?= $model['url']?>/node_modules/summernote/dist/summernote-bs4.css">
     <link rel="stylesheet" href="<?= $model['url']?>/node_modules/owl.carousel/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="<?= $model['url']?>/node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="<?= $model['url']?>/node_modules/izitoast/dist/css/iziToast.min.css">
     <link rel="stylesheet" href="<?= $model['url']?>/node_modules/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="<?= $model['url']?>/assets/modules/datatables.min.css">
     <link rel="stylesheet" href="<?= $model['url']?>/node_modules/dropzone/dist/min/dropzone.min.css">
