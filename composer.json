@@ -24,7 +24,8 @@
         "phpoffice/phpspreadsheet" : "*",
         "ext-gd": "*",
         "ext-pdo": "*",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "picqer/php-barcode-generator": "2.*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"

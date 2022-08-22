@@ -18,7 +18,7 @@ class View
     public static function redirect($url)
     {
         header("Location: $url");
-        if (getenv("mode") != "test") {
+        if (getenv("mode") !== "test") {
             exit();
         }
     }
