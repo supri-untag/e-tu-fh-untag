@@ -22,7 +22,19 @@ CREATE TABLE sessions(
                       id VARCHAR(250) NOT NULL PRIMARY KEY COLLATE utf8_general_ci,
                       user_id VARCHAR (250) NOT NULL COLLATE utf8_general_ci,
                       tipe VARCHAR(50) NOT NULL COLLATE utf8_general_ci,
-                      time_login DATE NOT NULL COLLATE utf8_general_ci,
+                      time_login TIMESTAMP NOT NULL COLLATE utf8_general_ci,
                       INDEX (user_id),
                       CONSTRAINT `fk_session_users` FOREIGN KEY (user_id) references users(id)
-)ENGINE InnoDB DEFAULT CHARSET =utf8 COLLATE=utf8_general_ci
+)ENGINE InnoDB DEFAULT CHARSET =utf8 COLLATE=utf8_general_ci;
+
+-- Item Table
+CREATE TABLE items(
+    id VARCHAR(250) NOT NULL PRIMARY KEY COLLATE utf8_general_ci,
+    name VARCHAR(300) NOT NULL COLLATE utf8_general_ci,
+    code VARCHAR(250) NOT NULL COLLATE utf8_general_ci,
+    brand VARCHAR(250) COLLATE utf8_general_ci,
+    type VARCHAR(250) COLLATE utf8_general_ci,
+    stock INTEGER COLLATE utf8_general_ci,
+    barcode VARCHAR(250) COLLATE utf8_general_ci,
+    INDEX (code)
+) ENGINE InnoDB DEFAULT CHARSET=utf8 COLLATE = utf8_general_ci;

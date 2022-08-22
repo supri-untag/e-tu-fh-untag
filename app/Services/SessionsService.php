@@ -14,7 +14,7 @@ class SessionsService
     public static $COOKE_NAME_SESSION = "_X_ET_s";
     public static $COOKE_NAME_ROLE = "__X_ET_r";
     public static $DEFAULT_TYPE = "login";
-
+    public static $SESSION_NAME = 'dump';
     private SessionsRepository $sessionsRepository;
     private UserRepository $userRepository;
 
@@ -24,29 +24,19 @@ class SessionsService
         $this->userRepository = $userRepository;
     }
 
-    public function create(string $request): Session
+    public function create(string $userId, string $role): Session
     {
-        $byEmail = $this->userRepository->findByEmail($request);
-        $username = null;
-        if ($byEmail === null) {
-            $username = $this->userRepository->findByUsername($request);
-        }else {
-            $username = $byEmail;
-        }
-        if ($username === null){
-            throw new HandlerException('Email atau username tidak tersedia');
-        }
         $sessions = new Session();
         $random = HashCodeString::hashString(5);
         $sessions->setId(uniqid($random, false));
-        $sessions->setUserId($username->getId());
+        $sessions->setUserId($userId);
         $sessions->setTipe(self::$DEFAULT_TYPE);
         $sessions->setTimeLogin(date('Y-m-d H:i:s'));
 
         $this->sessionsRepository->create($sessions);
 
         setcookie(self::$COOKE_NAME_SESSION,$sessions->getId(), time () + 60 * 60 * 60 * 24, '/');
-        setcookie(self::$COOKE_NAME_ROLE, hash('snefru' ,$sessions->setRole()) , time () + 60 * 60 * 60 * 24, '/');
+        setcookie(self::$COOKE_NAME_ROLE, hash('snefru' ,$role) , time () + 60 * 60 * 60 * 24, '/');
 
         return $sessions;
     }
@@ -84,4 +74,16 @@ class SessionsService
             return null;
         }
     }
+
+    public function sessionDumpset( string $email):void
+    {
+        $_SESSION[self::$SESSION_NAME] = $email;
+    }
+
+    public function sessionDumpDestroy():void
+    {
+        session_unset();
+        session_destroy();
+    }
+
 }

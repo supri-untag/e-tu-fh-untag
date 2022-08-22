@@ -50,15 +50,44 @@ $(document).ready(function(){
     });
     $('body').on('click', '.__btn-register', (e)=>{
         e.preventDefault();
-
-        toastr["error"]("My name is Inigo Montoya. You killed my father. Prepare to die!");
-
         let date = $('[name=date]').val();
         let name = $('#name').val();
         let dep = $('#departement').val();
         let email = $('#email').val();
         let password = $('#password').val();
-        let passwordConfirm = $('#password2').val();
+        let passwordConfirm = $('#password2').val()
+        $.ajax({
+            url : baseUrl+'/register',
+            method : 'POST',
+            dataType : 'JSON',
+            data : {
+                date: date,
+                name: name,
+                dep: dep,
+                email: email,
+                password: password,
+                passwordConfirm: passwordConfirm
+            },
+            success: function (params) {
+                if (params.status === 'success'){
+                    Swal.fire({
+                        title:'Berhasil !',
+                        text:'Akun berhasil dibuat',
+                        icon:'success',
+                    }).then(function(){
+                        window.location.href=baseUrl+'/register-success';
+                    })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Gagal',
+                        showConfirmButton: true,
+                        text: params.msg
+                    })
+                }
+            }
+        })
 
     });
 
@@ -76,5 +105,38 @@ $(document).ready(function(){
     }else {
         gift = "Night"
     }
-    $('#banner-wecome').html('Good' + gift);
+    $('#banner-wecome').html('Good ' + gift);
+
+    $('body').on('click','.__submit-login', (e)=>{
+        e.preventDefault();
+        let RequestUser = $('#emailUsername').val();
+        let password = $('#password').val();
+        $.ajax({
+            url: baseUrl+'/login',
+            dataType : 'JSON',
+            method : 'POST',
+            data : {
+                RequestUser : RequestUser,
+                password : password
+            },
+            success : function (params) {
+                console.log(params)
+                if (params.status === true){
+                    Swal.fire({
+                        title:'Berhasil!',
+                        text:'login sukses, adan akan dialihkan halamannya',
+                        icon:'success',
+                    }).then(function(){
+                        window.location.href=baseUrl;
+                    })
+                } else {
+                     $('.__alert').html(`
+                         <div class="alert alert-danger">`+
+                            params.msg
+                        +`</div>
+                     `)
+                }
+            }
+        })
+    });
 });

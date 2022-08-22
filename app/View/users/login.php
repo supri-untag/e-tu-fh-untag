@@ -6,12 +6,15 @@
                     <img src="../assets/img/stisla-fill.svg" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
                     <h4 class="text-dark font-weight-normal">Selamat datang di <span class="font-weight-bold">E-TU</span></h4>
                     <p class="text-muted">Sebelum masuk silahkan Login terlebih dahulu!</p>
-                    <form method="POST" action="#" class="needs-validation" novalidate="">
+                    <form method="POST" action="/" class="needs-validation" novalidate="">
+                        <div class="__alert">
+
+                        </div>
                         <div class="form-group">
                             <label for="emailUsername">Email atau Username</label>
-                            <input id="emailUsername" type="email" class="form-control" name="emailUsername" tabindex="1" required autofocus placeholder="Email atau Username..">
+                            <input id="emailUsername" type="text" class="form-control" name="emailUsername" tabindex="1" required autofocus placeholder="Email atau Username..">
                             <div class="invalid-feedback">
-                                Please fill in your email
+                                Tolong isi email atau username!
                             </div>
                         </div>
 
@@ -21,11 +24,11 @@
                             </div>
                             <input id="password" type="password" class="form-control" name="password" placeholder="Password.." tabindex="2" required>
                             <div class="invalid-feedback">
-                                please fill in your password
+                                tolong isi password!
                             </div>
                         </div>
                         <div class="form-group text-right">
-                            <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
+                            <button class="btn btn-primary btn-lg btn-icon icon-right __submit-login" tabindex="4">
                                 Login
                             </button>
                         </div>

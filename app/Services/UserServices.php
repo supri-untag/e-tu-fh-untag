@@ -6,6 +6,8 @@ use Supri\ETU\UNTAG\Config\Database;
 use Supri\ETU\UNTAG\Domain\Users;
 use Supri\ETU\UNTAG\Exception\HandlerException;
 use Supri\ETU\UNTAG\Helper\HashCodeString;
+use Supri\ETU\UNTAG\Model\UserLoginRequest;
+use Supri\ETU\UNTAG\Model\UserLoginRespon;
 use Supri\ETU\UNTAG\Model\UserRegistrationRequest;
 use Supri\ETU\UNTAG\Model\UserRegistrationRespon;
 use Supri\ETU\UNTAG\Repository\UserRepository;
@@ -59,26 +61,73 @@ class UserServices
         }
     }
 
-    private function validationUserRegistration( UserRegistrationRequest $request):void
+    /**
+     * @throws HandlerException
+     */
+    private function validationUserRegistration(UserRegistrationRequest $request):void
     {
-        if ( $request->getPassword() !== $request->getPasswordConfirm()){
-            throw new HandlerException('sandi dan sandikonfirmasi tidak sama');
-        }
         if ($request->getName() === null || $request->getBagian()=== null || $request->getEmail() === null || $request->getPassword()=== null || $request->getName() === '' || $request->getBagian()=== '' || $request->getEmail() === '' || $request->getPassword()=== '') {
             throw new HandlerException('Tidak boleh ada kolom yang kosong');
         }
+
         $number = preg_match('@[0-9]@', $request->getPassword());
         $uppercase = preg_match('@[A-Z]@', $request->getPassword());
         $lowercase = preg_match('@[a-z]@', $request->getPassword());
         $specialChars = preg_match('@[^\w]@', $request->getPassword());
-        if(strlen($request->getPassword()) < 8 || !$number || !$uppercase || !$lowercase || !$specialChars) {
-            throw new HandlerException('Password tidak sesuai dengan ketentuan');
+
+        if(preg_match('@[0-9]@', $request->getName())){
+            throw new HandlerException('Ya Kali nama ada angkanya nama atau turunan??');
         }
         if (!filter_var($request->getEmail(), FILTER_VALIDATE_EMAIL)){
             throw new HandlerException('Kesalahan format email');
         }
+        if(strlen($request->getPassword()) < 8 || !$number || !$uppercase || !$lowercase || !$specialChars) {
+            throw new HandlerException('Password tidak sesuai dengan ketentuan');
+        }
+
+        if ( $request->getPassword() !== $request->getPasswordConfirm()){
+            throw new HandlerException('sandi dan sandi konfirmasi tidak sama');
+        }
     }
 
+    /**
+     * @throws HandlerException
+     */
+    public function login(UserLoginRequest $request) :UserLoginRespon
+    {
+        $this->ValidationUserLoginRequest($request);
+        $findUserEmail = $this->userRepository->findByEmail($request->getEmailUsername());
+        if (!($findUserEmail != null)){
+            $username = $this->userRepository->findByUsername($request->getEmailUsername());
+            $requestLogin= $username;
+        } else{
+            $requestLogin = $findUserEmail;
+        }
+        if (!($requestLogin != null)) {
+            throw new HandlerException('Sesuatu ada yang salah');
+        }
+        if ($requestLogin->getVerify() === 'false') {
+            throw new HandlerException('User belum terverifikasi oleh admin');
+        }
+
+        if (password_verify($request->getPassword(), $requestLogin->getPassword())){
+            $respon = new UserLoginRespon();
+            $respon->setUsers($requestLogin);
+            return $respon;
+        }else{
+            throw new HandlerException('Sesuatu ada yang salah');
+        }
+    }
+
+    /**
+     * @throws HandlerException
+     */
+    private function ValidationUserLoginRequest(UserLoginRequest $request):void
+    {
+        if ($request->getEmailUsername() === null || $request->getPassword() === null){
+            throw new HandlerException('Semua kolong tidak boleh kosong!');
+        }
+    }
     public function deleteAllUser():void
     {
         $this->userRepository->deleteAll();
